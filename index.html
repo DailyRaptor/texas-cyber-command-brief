@@ -1,0 +1,1232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Texas Cyber Command: HB 150 Interactive Business Brief</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: #f8f9fa;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+        }
+
+        .header h1 {
+            font-size: 2.2em;
+            font-weight: 300;
+            margin-bottom: 10px;
+            letter-spacing: -0.5px;
+        }
+
+        .header .subtitle {
+            font-size: 1.1em;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        .interactive-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255,255,255,0.2);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .executive-summary {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 8px;
+            margin-bottom: 40px;
+            border-left: 4px solid #2a5298;
+        }
+
+        .executive-summary h2 {
+            color: #1e3c72;
+            margin-bottom: 20px;
+            font-size: 1.4em;
+            font-weight: 600;
+        }
+
+        .executive-summary p {
+            font-size: 1.05em;
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 8px;
+            font-size: 1.3em;
+            font-weight: 600;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-title .icon {
+            font-size: 1.2em;
+            margin-right: 10px;
+        }
+
+        .milestones-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .milestone-card {
+            background: #fff;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .milestone-card:hover {
+            border-color: #2a5298;
+            box-shadow: 0 5px 15px rgba(42, 82, 152, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .milestone-card .label {
+            font-weight: 600;
+            color: #1e3c72;
+            font-size: 0.95em;
+        }
+
+        .milestone-card .value {
+            font-size: 1.1em;
+            margin-top: 5px;
+            color: #2c3e50;
+        }
+
+        .detail-indicator {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #2a5298;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+
+        .timeline {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(90deg, #e9ecef 0%, #e9ecef 100%);
+            padding: 25px;
+            border-radius: 8px;
+            margin: 25px 0;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 5%;
+            right: 5%;
+            height: 3px;
+            background: linear-gradient(90deg, #2a5298 0%, #1e3c72 100%);
+            transform: translateY(-50%);
+            z-index: 1;
+        }
+
+        .timeline-item {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            min-width: 180px;
+            border: 2px solid #2a5298;
+            position: relative;
+            z-index: 2;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(42, 82, 152, 0.2);
+        }
+
+        .timeline-item .date {
+            font-weight: 600;
+            color: #1e3c72;
+            font-size: 0.9em;
+        }
+
+        .timeline-item .event {
+            font-size: 0.85em;
+            margin-top: 5px;
+            color: #495057;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 25px 0;
+        }
+
+        .benefit-box {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 8px;
+            border-left: 4px solid #2a5298;
+        }
+
+        .benefit-box h4 {
+            color: #1e3c72;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+            font-weight: 600;
+        }
+
+        .benefit-box ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .benefit-box li {
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .benefit-box li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: #2a5298;
+            font-weight: bold;
+        }
+
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .impact-card {
+            background: white;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .impact-card:hover {
+            border-color: #2a5298;
+            box-shadow: 0 5px 15px rgba(42, 82, 152, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .impact-card .number {
+            background: linear-gradient(135deg, #2a5298 0%, #1e3c72 100%);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.85em;
+            margin-bottom: 15px;
+        }
+
+        .impact-card .title {
+            font-weight: 600;
+            color: #1e3c72;
+            margin-bottom: 8px;
+            font-size: 0.95em;
+            line-height: 1.4;
+        }
+
+        .impact-card .description {
+            font-size: 0.9em;
+            color: #6c757d;
+            line-height: 1.5;
+        }
+
+        .next-steps {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 30px;
+            border-radius: 8px;
+            margin-top: 40px;
+        }
+
+        .next-steps h3 {
+            color: #1e3c72;
+            margin-bottom: 25px;
+            font-size: 1.3em;
+            text-align: center;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .step-card {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            border-top: 4px solid #2a5298;
+        }
+
+        .step-card h4 {
+            color: #1e3c72;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        .step-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .step-card li {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+            font-size: 0.95em;
+        }
+
+        .step-card li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #28a745;
+            font-weight: bold;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.6);
+            backdrop-filter: blur(3px);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 0;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 700px;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            animation: modalSlideIn 0.3s ease-out;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 12px 12px 0 0;
+            position: relative;
+        }
+
+        .modal-header h2 {
+            margin: 0;
+            font-size: 1.4em;
+            font-weight: 600;
+        }
+
+        .modal-header .close {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .modal-header .close:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-50%) rotate(90deg);
+        }
+
+        .modal-body {
+            padding: 30px;
+        }
+
+        .modal-body h3 {
+            color: #1e3c72;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .modal-body p {
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .modal-body ul {
+            margin-bottom: 15px;
+            padding-left: 20px;
+        }
+
+        .modal-body li {
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        .detail-list {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+
+        .detail-list h4 {
+            color: #2a5298;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .click-hint {
+            text-align: center;
+            color: #6c757d;
+            font-size: 0.9em;
+            margin-top: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border: 1px dashed #dee2e6;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 20px;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+            
+            .timeline {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .timeline::before {
+                display: none;
+            }
+
+            .modal-content {
+                width: 95%;
+                margin: 10% auto;
+            }
+
+            .interactive-badge {
+                position: static;
+                display: inline-block;
+                margin-top: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="interactive-badge">📱 Click for Details</div>
+            <h1>Texas House Bill 150</h1>
+            <div class="subtitle">Establishing Texas Cyber Command • Interactive Business Brief</div>
+        </div>
+
+        <div class="content">
+            <div class="executive-summary">
+                <h2>Executive Summary</h2>
+                <p>Texas House Bill 150 (HB 150) delivers a historic upgrade to Texas' cybersecurity strategy. It establishes the Texas Cyber Command, a dedicated state agency focused on protecting government systems, critical infrastructure, and local communities.</p>
+                <p>For public sector leaders and industry partners, this legislation creates a centralized cybersecurity authority, streamlined contracting pathways, expanded incident response capabilities, and a robust roadmap for improving resilience across the state.</p>
+            </div>
+
+            <div class="section">
+                <div class="section-title">
+                    <span class="icon">🚀</span>
+                    Key Milestones & Fast Facts
+                </div>
+                
+                <div class="milestones-grid">
+                    <div class="milestone-card" onclick="openModal('budgetModal')">
+                        <div class="detail-indicator">i</div>
+                        <div class="label">Initial Budget</div>
+                        <div class="value">$200M+ (2025–2027)</div>
+                    </div>
+                    <div class="milestone-card" onclick="openModal('staffingModal')">
+                        <div class="detail-indicator">i</div>
+                        <div class="label">Staffing Plan</div>
+                        <div class="value">150–200 initial / 300–400 total</div>
+                    </div>
+                    <div class="milestone-card" onclick="openModal('technologyModal')">
+                        <div class="detail-indicator">i</div>
+                        <div class="label">Technology Infrastructure</div>
+                        <div class="value">24/7 SOC, Threat Intel, Forensics</div>
+                    </div>
+                    <div class="milestone-card" onclick="openModal('procurementModal')">
+                        <div class="detail-indicator">i</div>
+                        <div class="label">Procurement Changes</div>
+                        <div class="value">Emergency Powers & Flexibility</div>
+                    </div>
+                </div>
+
+                <div class="timeline">
+                    <div class="timeline-item" onclick="openModal('timeline1Modal')">
+                        <div class="date">Sep 1, 2025</div>
+                        <div class="event">Effective Date</div>
+                    </div>
+                    <div class="timeline-item" onclick="openModal('timeline2Modal')">
+                        <div class="date">Jan 1, 2026</div>
+                        <div class="event">MOU Deadline</div>
+                    </div>
+                    <div class="timeline-item" onclick="openModal('timeline3Modal')">
+                        <div class="date">Dec 31, 2026</div>
+                        <div class="event">Full Transfer</div>
+                    </div>
+                    <div class="timeline-item" onclick="openModal('timeline4Modal')">
+                        <div class="date">Sep 1, 2031</div>
+                        <div class="event">Sunset Review</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-title">
+                    <span class="icon">🔎</span>
+                    Why It Matters
+                </div>
+                
+                <div class="two-column">
+                    <div class="benefit-box">
+                        <h4>For State & Local Leaders</h4>
+                        <ul>
+                            <li>Greater protection for citizen data and public services</li>
+                            <li>Faster, coordinated incident response</li>
+                            <li>New pathways for cybersecurity workforce development</li>
+                        </ul>
+                    </div>
+                    <div class="benefit-box">
+                        <h4>For Industry Partners</h4>
+                        <ul>
+                            <li>New procurement opportunities through centralized contracts</li>
+                            <li>Faster contracting during cyber emergencies</li>
+                            <li>Growing demand for threat intelligence, incident response, training</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-title">
+                    <span class="icon">🏢</span>
+                    Key Impacts for Industry Partners
+                </div>
+                
+                <div class="impact-grid">
+                    <div class="impact-card" onclick="openModal('agencyModal')">
+                        <div class="detail-indicator">+</div>
+                        <div class="number">1</div>
+                        <div class="title">New State Agency Creation</div>
+                        <div class="description">Establishes Texas Cyber Command as a new cybersecurity-focused state agency with independent procurement.</div>
+                    </div>
+                    <div class="impact-card" onclick="openModal('emergencyModal')">
+                        <div class="detail-indicator">+</div>
+                        <div class="number">2</div>
+                        <div class="title">Emergency Purchasing Authority</div>
+                        <div class="description">Exempts cybersecurity emergency purchases from standard procurement rules.</div>
+                    </div>
+                    <div class="impact-card" onclick="openModal('operationsModal')">
+                        <div class="detail-indicator">+</div>
+                        <div class="number">3</div>
+                        <div class="title">24/7 Operations Center</div>
+                        <div class="description">Runs a 24/7 statewide cybersecurity portal and hotline.</div>
+                    </div>
+                    <div class="impact-card" onclick="openModal('trainingModal')">
+                        <div class="detail-indicator">+</div>
+                        <div class="number">4</div>
+                        <div class="title">State Certified Training Programs</div>
+                        <div class="description">Certifies at least five cybersecurity training programs annually.</div>
+                    </div>
+                    <div class="impact-card" onclick="openModal('cloudModal')">
+                        <div class="detail-indicator">+</div>
+                        <div class="number">5</div>
+                        <div class="title">Cloud Computing Authorization</div>
+                        <div class="description">Establishes a state program to certify secure cloud computing industry partners.</div>
+                    </div>
+                    <div class="impact-card" onclick="openModal('regionalModal')">
+                        <div class="detail-indicator">+</div>
+                        <div class="number">6</div>
+                        <div class="title">Regional Security Operations Centers</div>
+                        <div class="description">Permits establishment of regional cybersecurity centers.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="next-steps">
+                <h3>What's Next</h3>
+                <div class="steps-grid">
+                    <div class="step-card">
+                        <h4>For State and Local Leaders</h4>
+                        <ul>
+                            <li>Engage early with Texas Cyber Command for coordination opportunities</li>
+                            <li>Plan for new compliance and reporting structures</li>
+                            <li>Align with the Command's standards and requirements</li>
+                        </ul>
+                    </div>
+                    <div class="step-card">
+                        <h4>For Industry Partners</h4>
+                        <ul>
+                            <li>Prepare solutions that align with emergency procurement models</li>
+                            <li>Focus on 24/7 monitoring, threat intel, forensics, and training services</li>
+                            <li>Position offerings to support state and critical infrastructure resilience</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="click-hint">
+                💡 <strong>Interactive Elements:</strong> Click on cards with "i" or "+" indicators to explore detailed information about each topic.
+            </div>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <!-- Budget Modal -->
+    <div id="budgetModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Budget & Funding Details</h2>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <h3>Initial Budget: $200M+ (2025-2027)</h3>
+                <p>The Texas Cyber Command will be funded through multiple revenue streams to ensure sustainable operations and growth.</p>
+                
+                <div class="detail-list">
+                    <h4>Funding Sources:</h4>
+                    <ul>
+                        <li><strong>State Appropriations:</strong> Primary funding through legislative budget allocation</li>
+                        <li><strong>Cost Recovery Services:</strong> Fees for technical assistance and specialized services</li>
+                        <li><strong>Federal Grants:</strong> Cybersecurity infrastructure and workforce development grants</li>
+                        <li><strong>Private Sector Partnerships:</strong> Joint funding for specific initiatives and programs</li>
+                        <li><strong>Gifts and Donations:</strong> Authority to accept gifts, grants, and donations from various sources</li>
+                    </ul>
+                </div>
+
+                <p><strong>Budget Flexibility:</strong> The Command has authority to hold patents, copyrights, and licensing agreements, creating additional revenue opportunities through vendor collaborations and intellectual property development.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Staffing Modal -->
+    <div id="staffingModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Staffing & Organization Plan</h2>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <h3>Phased Hiring Approach</h3>
+                
+                <div class="detail-list">
+                    <h4>Phase 1: Initial Launch (150-200 employees)</h4>
+                    <ul>
+                        <li><strong>Location:</strong> Majority based in San Antonio with secure SCIF facility</li>
+                        <li><strong>Focus:</strong> Core operations, leadership team, and essential cybersecurity functions</li>
+                        <li><strong>Timeline:</strong> September 2025 - December 2026</li>
+                    </ul>
+                </div>
+
+                <div class="detail-list">
+                    <h4>Phase 2: Full Expansion (300-400 employees statewide)</h4>
+                    <ul>
+                        <li><strong>Distribution:</strong> Statewide deployment through regional centers</li>
+                        <li><strong>Growth Areas:</strong> Digital forensics, threat intelligence, training programs</li>
+                        <li><strong>Timeline:</strong> 2027 and beyond</li>
+                    </ul>
+                </div>
+
+                <div class="detail-list">
+                    <h4>Leadership Structure:</h4>
+                    <ul>
+                        <li><strong>Chief Executive:</strong> Governor-appointed, Senate-confirmed, two-year terms</li>
+                        <li><strong>Specialized Directors:</strong> Threat Intelligence, Incident Response, Digital Forensics</li>
+                        <li><strong>DIR Staff Transition:</strong> Existing cybersecurity teams, contracts, and systems transfer to Command</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Technology Modal -->
+    <div id="technologyModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Technology Infrastructure</h2>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <h3>Comprehensive Cybersecurity Technology Stack</h3>
+                
+                <div class="detail-list">
+                    <h4>24/7 Cybersecurity Operations Center (SOC)</h4>
+                    <ul>
+                        <li>Continuous monitoring of state government systems</li>
+                        <li>Real-time threat detection and response capabilities</li>
+                        <li>Statewide cybersecurity portal and emergency hotline</li>
+                        <li>Integration with federal cybersecurity agencies</li>
+                    </ul>
+                </div>
+
+                <div class="detail-list">
+                    <h4>Threat Intelligence Center</h4>
+                    <ul>
+                        <li>Collaboration with federal cybersecurity agencies</li>
+                        <li>Intelligence sharing with public and private sector partners</li>
+                        <li>Proactive threat hunting and analysis</li>
+                        <li>Custom threat intelligence for Texas-specific risks</li>
+                    </ul>
+                </div>
+
+                <div class="detail-list">
+                    <h4>Digital Forensics Laboratory</h4>
+                    <ul>
+                        <li>Forensic investigations and evidence preservation</li>
+                        <li>Chain of custody procedures for legal proceedings</li>
+                        <li>Support for law enforcement cybercrime investigations</li>
+                        <li>Advanced malware analysis capabilities</li>
+                    </ul>
+                </div>
+
+                <div class="detail-list">
+                    <h4>Regional Security Operations Centers</h4>
+                    <ul>
+                        <li>Distributed monitoring capabilities across Texas</li>
+                        <li>Local incident response and support</li>
+                        <li>University partnerships for additional resources</li>
+                        <li>Community-focused cybersecurity services</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Procurement Modal -->
+    <div id="procurementModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Procurement Flexibility & Emergency Powers</h2>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <h3>Streamlined Procurement for Cybersecurity</h3>
+                
+                <div class="detail-list">
+                    <h4>Emergency Purchasing Authority</h4>
+                    <ul>
+                        <li><strong>Bypass Standard Rules:</strong> Exempts cybersecurity emergency purchases from traditional procurement processes</li>
+                        <li><strong>Rapid Response:</strong> Enables faster technology acquisitions during cyber incidents</li>
+                        <li><strong>Vendor Flexibility:</strong> Ability to engage specialized cybersecurity vendors quickly</li>
+                        <li><strong>Cost Recovery:</strong> Authority to recover costs for emergency services provided</li>
+                    </ul>
+                </div>
+
+                <div class="detail-list">
+                    <h4>Strategic Advantages for Industry Partners</h4>
+                    <ul>
+                        <li>Direct contracting opportunities during cybersecurity emergencies</li>
+                        <li>Reduced bureaucratic delays for critical security tools and services</li>
+                        <li>Partnership opportunities for ongoing cybersecurity infrastructure</li>
+                        <li>Access to cost-recovery based service contracts</li>
+                    </ul>
+                </div>
+
+                <p><strong>Business Impact:</strong> This procurement flexibility creates new market opportunities for cybersecurity vendors while ensuring Texas can respond rapidly to evolving cyber threats.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Timeline Modals -->
+    <div id="timeline1Modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>September 1, 2025: HB 150 Effective Date</h2>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <h3>What Happens on Day One</h3>
+                <p>HB 150 officially becomes law, establishing the legal framework for the Texas Cyber Command.</p>
+                
+                <div class="detail-list">
+                    <h4>Immediate Actions:</h4>
+                    <ul>
+                        <li>Legal authority for Texas Cyber Command is established</li>
+                        <li>Governor begins process of appointing Chief Executive</li>
+                        <li>Initial budget allocation becomes available</li>
+                        <li>Planning phase for organizational structure begins</li>
+                        <li>Coordination with DIR for transition planning starts</li>
+                    </ul>
+                </div>
+                
+                <p><strong>Industry Impact:</strong> Early engagement opportunities for cybersecurity vendors to participate in the foundational planning and infrastructure development.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="timeline2Modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>January 1, 2026: MOU Finalization</h2>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <h3>Transfer Plan Memorandum of Understanding</h3>
+                <p>Formal agreement between DIR and Texas Cyber Command outlining the complete transition process.</p>
+                
+                <div class="detail-list">
+                    <h4>MOU Components:</h4>
+                    <ul>
+                        <li><strong>Staff Transfer:</strong> Detailed plan for moving cybersecurity personnel from DIR</li>
+                        <li><strong>Contract Migration:</strong> Process for transferring existing cybersecurity contracts</li>
+                        <li><strong>System Handover:</strong> Technical specifications for infrastructure transfer</li>
+                        <li><strong>Timeline Milestones:</strong> Specific deadlines for each phase of transition</li>
+                        <li><strong>Continuity Planning:</strong> Ensuring no disruption to ongoing cybersecurity operations</li>
+                    </ul>
+                </div>
+                
+                <p><strong>Vendor Considerations:</strong> Existing DIR cybersecurity contracts will be evaluated for transfer to the Command, creating opportunities for contract renewals and expansions.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="timeline3Modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>December 31, 2026: Full Operational Transfer</h2>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <h3>Texas Cyber Command Fully Operational</h3>
+                <p>Complete transition of cybersecurity responsibilities from DIR to the Texas Cyber Command.</p>
+                
+                <div class="detail-list">
+                    <h4>Full Capabilities Online:</h4>
+                    <ul>
+                        <li><strong>24/7 Operations Center:</strong> Fully staffed and monitoring all state systems</li>
+                        <li><strong>Incident Response Team:</strong> Ready to respond to cybersecurity emergencies</li>
+                        <li><strong>Threat Intelligence Center:</strong> Active intelligence gathering and sharing</li>
+                        <li><strong>Digital Forensics Lab:</strong> Operational for investigations and evidence analysis</li>
+                        <li><strong>Training Programs:</strong> Certified cybersecurity training programs launched</li>
+                    </ul>
+                </div>
+                
+                <div class="detail-list">
+                    <h4>Business Opportunities Active:</h4>
+                    <ul>
+                        <li>Emergency procurement authority fully implemented</li>
+                        <li>Cost recovery services available to public and private sector</li>
+                        <li>Regional center partnerships established</li>
+                        <li>Cloud authorization program operational</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="timeline4Modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>September 1, 2031: Sunset Review</h2>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <h3>Legislative Review and Renewal</h3>
+                <p>Comprehensive evaluation of the Texas Cyber Command's effectiveness and future direction.</p>
+                
+                <div class="detail-list">
+                    <h4>Review Components:</h4>
+                    <ul>
+                        <li><strong>Performance Assessment:</strong> Evaluation of cybersecurity improvements achieved</li>
+                        <li><strong>Financial Analysis:</strong> Cost-effectiveness and budget utilization review</li>
+                        <li><strong>Stakeholder Feedback:</strong> Input from state agencies, local governments, and industry partners</li>
+                        <li><strong>Threat Landscape:</strong> Assessment of evolving cybersecurity challenges</li>
+                        <li><strong>Continuation Decision:</strong> Legislative determination on future authorization</li>
+                    </ul>
+                </div>
+                
+                <p><strong>Strategic Planning:</strong> This review provides an opportunity to assess the success of public-private partnerships and refine the Command's mission for future cybersecurity challenges.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Impact Modals -->
+    <div id="agencyModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>New State Agency Creation</h2>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <h3>Texas Cyber Command: Independent Cybersecurity Authority</h3>
+                
+                <div class="detail-list">
+                    <h4>Agency Structure & Authority:</h4>
+                    <ul>
+                        <li><strong>Independent Operations:</strong> Dedicated agency focused solely on cybersecurity</li>
+                        <li><strong>Governor Oversight:</strong> Chief Executive appointed by Governor, confirmed by Senate</li>
+                        <li><strong>Procurement Independence:</strong> Authority to make cybersecurity purchases and contracts</li>
+                        <li><strong>Emergency Powers:</strong> Special authorities during cybersecurity incidents</li>
+                        <li><strong>Property Rights:</strong> Can hold patents, copyrights, and licensing agreements</li>
+                    </ul>
+                </div>
+
+                <div class="detail-list">
+                    <h4>Business Opportunities:</h4>
+                    <ul>
+                        <li>Direct contracting with dedicated cybersecurity agency</li>
+                        <li>Specialized procurement processes for cybersecurity solutions</li>
+                        <li>Partnership opportunities for intellectual property development</li>
+                        <li>Access to emergency procurement during cyber incidents</li>
+                        <li>Long-term strategic partnerships for cybersecurity infrastructure</li>
+                    </ul>
+                </div>
+
+                <p><strong>Competitive Advantage:</strong> Working with a specialized cybersecurity agency means faster decision-making, deeper technical expertise, and more strategic long-term planning for cybersecurity investments.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="emergencyModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Emergency Purchasing Authority</h2>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <h3>Rapid Response Procurement Powers</h3>
+                
+                <div class="detail-list">
+                    <h4>Emergency Authority Details:</h4>
+                    <ul>
+                        <li><strong>Bypass Standard Procurement:</strong> Exempts emergency cybersecurity purchases from normal state procurement rules</li>
+                        <li><strong>Immediate Response:</strong> Enables acquisition of critical tools and services within hours, not months</li>
+                        <li><strong>Vendor Direct Engagement:</strong> Direct contracting with cybersecurity specialists during emergencies</li>
+                        <li><strong>Cost Recovery:</strong> Authority to charge for emergency response services provided</li>
+                    </ul>
+                </div>
+
+                <div class="detail-list">
+                    <h4>Scenarios for Emergency Procurement:</h4>
+                    <ul>
+                        <li>Active cyber attacks on state infrastructure</li>
+                        <li>Critical vulnerabilities requiring immediate patching</li>
+                        <li>Incident response requiring specialized forensic tools</li>
+                        <li>Threat intelligence requiring immediate action</li>
+                        <li>Recovery operations following major cyber incidents</li>
+                    </ul>
+                </div>
+
+                <p><strong>Vendor Benefits:</strong> Pre-qualified vendors can respond immediately to emergency situations, creating revenue opportunities and demonstrating value during critical moments.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="operationsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>24/7 Operations Center</h2>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <h3>Continuous Cybersecurity Monitoring</h3>
+                
+                <div class="detail-list">
+                    <h4>Operations Center Capabilities:</h4>
+                    <ul>
+                        <li><strong>24/7 Monitoring:</strong> Round-the-clock surveillance of state government systems</li>
+                        <li><strong>Statewide Portal:</strong> Central hub for cybersecurity reporting and coordination</li>
+                        <li><strong>Emergency Hotline:</strong> Direct communication line for cyber incidents</li>
+                        <li><strong>Real-time Response:</strong> Immediate incident detection and containment</li>
+                        <li><strong>Multi-agency Coordination:</strong> Integration with local, state, and federal agencies</li>
+                    </ul>
+                </div>
+
+                <div class="detail-list">
+                    <h4>Technology Requirements:</h4>
+                    <ul>
+                        <li>Advanced SIEM (Security Information and Event Management) platforms</li>
+                        <li>Network monitoring and traffic analysis tools</li>
+                        <li>Incident response and forensics software</li>
+                        <li>Communication and collaboration platforms</li>
+                        <li>Threat intelligence feeds and analysis tools</li>
+                    </ul>
+                </div>
+
+                <p><strong>Industry Impact:</strong> Continuous operations create ongoing demand for monitoring tools, managed services, threat intelligence feeds, and specialized cybersecurity software platforms.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="trainingModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>State Certified Training Programs</h2>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <h3>Cybersecurity Workforce Development</h3>
+                
+                <div class="detail-list">
+                    <h4>Certification Program Structure:</h4>
+                    <ul>
+                        <li><strong>Annual Certification:</strong> At least five cybersecurity training programs certified each year</li>
+                        <li><strong>Third-Party Providers:</strong> Industry partners can become certified training providers</li>
+                        <li><strong>Mandatory Training:</strong> All officials and employees with system access require annual training</li>
+                        <li><strong>Contractor Requirements:</strong> State contractors must provide cybersecurity training to their staff</li>
+                    </ul>
+                </div>
+
+                <div class="detail-list">
+                    <h4>Training Program Opportunities:</h4>
+                    <ul>
+                        <li>Development of Texas-specific cybersecurity curricula</li>
+                        <li>Certification and accreditation services</li>
+                        <li>Online and in-person training delivery</li>
+                        <li>Specialized training for different roles and industries</li>
+                        <li>Continuous education and recertification programs</li>
+                    </ul>
+                </div>
+
+                <div class="detail-list">
+                    <h4>Market Scope:</h4>
+                    <ul>
+                        <li><strong>State Employees:</strong> Thousands of government workers requiring annual training</li>
+                        <li><strong>Local Governments:</strong> Municipal and county employees needing certification</li>
+                        <li><strong>Contractors:</strong> Private sector companies working with state agencies</li>
+                        <li><strong>Critical Infrastructure:</strong> Private sector entities seeking state-certified training</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="cloudModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Cloud Computing Authorization Program</h2>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <h3>Secure Cloud Certification for Industry Partners</h3>
+                
+                <div class="detail-list">
+                    <h4>Authorization Program Components:</h4>
+                    <ul>
+                        <li><strong>Security Standards:</strong> Texas-specific cloud security requirements and controls</li>
+                        <li><strong>Vendor Certification:</strong> Formal approval process for cloud service providers</li>
+                        <li><strong>Ongoing Compliance:</strong> Regular audits and security assessments</li>
+                        <li><strong>Risk Assessment:</strong> Comprehensive evaluation of cloud security posture</li>
+                    </ul>
+                </div>
+
+                <div class="detail-list">
+                    <h4>Benefits for Cloud Providers:</h4>
+                    <ul>
+                        <li><strong>Preferred Vendor Status:</strong> Authorization provides competitive advantage</li>
+                        <li><strong>State Agency Access:</strong> Streamlined procurement for authorized providers</li>
+                        <li><strong>Compliance Framework:</strong> Clear security requirements and standards</li>
+                        <li><strong>Market Differentiation:</strong> Texas Cyber Command authorization as a credential</li>
+                    </ul>
+                </div>
+
+                <div class="detail-list">
+                    <h4>Services Covered:</h4>
+                    <ul>
+                        <li>Infrastructure as a Service (IaaS)</li>
+                        <li>Platform as a Service (PaaS)</li>
+                        <li>Software as a Service (SaaS)</li>
+                        <li>Disaster recovery and backup services</li>
+                        <li>Specialized cybersecurity cloud services</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="regionalModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Regional Security Operations Centers</h2>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <h3>Distributed Cybersecurity Infrastructure</h3>
+                
+                <div class="detail-list">
+                    <h4>Regional Center Concept:</h4>
+                    <ul>
+                        <li><strong>Geographic Distribution:</strong> Strategic placement across Texas regions</li>
+                        <li><strong>Local Response:</strong> Rapid incident response for regional threats</li>
+                        <li><strong>University Partnerships:</strong> Collaboration with Texas university systems</li>
+                        <li><strong>Community Focus:</strong> Support for local governments and businesses</li>
+                    </ul>
+                </div>
+
+                <div class="detail-list">
+                    <h4>Partnership Opportunities:</h4>
+                    <ul>
+                        <li><strong>Facility Development:</strong> Construction and infrastructure contracts</li>
+                        <li><strong>Technology Integration:</strong> Networking and cybersecurity equipment</li>
+                        <li><strong>Managed Services:</strong> Ongoing operations and maintenance</li>
+                        <li><strong>Training Delivery:</strong> Regional cybersecurity education programs</li>
+                        <li><strong>Research Collaboration:</strong> Joint cybersecurity research projects</li>
+                    </ul>
+                </div>
+
+                <div class="detail-list">
+                    <h4>Regional Benefits:</h4>
+                    <ul>
+                        <li>Reduced response times for cyber incidents</li>
+                        <li>Local expertise and relationships</li>
+                        <li>Economic development through cybersecurity investment</li>
+                        <li>Workforce development in regional markets</li>
+                        <li>Enhanced coordination with local law enforcement</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(modal) {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking the X
+        document.querySelectorAll('.close').forEach(closeBtn => {
+            closeBtn.addEventListener('click', function() {
+                closeModal(this.closest('.modal'));
+            });
+        });
+
+        // Close modal when clicking outside of it
+        window.addEventListener('click', function(event) {
+            if (event.target.classList.contains('modal')) {
+                closeModal(event.target);
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                document.querySelectorAll('.modal').forEach(modal => {
+                    if (modal.style.display === 'block') {
+                        closeModal(modal);
+                    }
+                });
+            }
+        });
+
+        // Add click animation feedback
+        document.querySelectorAll('.milestone-card, .impact-card, .timeline-item').forEach(card => {
+            card.addEventListener('click', function() {
+                this.style.transform = 'scale(0.98)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 150);
+            });
+        });
+    </script>
+</body>
+</html>
